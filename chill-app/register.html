@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="auth register-bg">
+
+<div class="auth-card">
+
+  <img src="assets/logo.png" class="logo">
+
+  <h2>Daftar</h2>
+  <p class="sub">Selamat datang!</p>
+
+  <form id="registerForm">
+
+    <label>Username</label>
+    <input id="regUser" type="text" placeholder="Masukkan username">
+
+    <label>Kata Sandi</label>
+    <div class="input-group">
+      <input id="regPass" type="password" placeholder="Masukkan kata sandi">
+      <span class="eye">👁</span>
+    </div>
+
+    <label>Konfirmasi Kata Sandi</label>
+    <div class="input-group">
+      <input id="regConfirm" type="password" placeholder="Konfirmasi kata sandi">
+      <span class="eye">👁</span>
+    </div>
+
+    <p class="auth-switch">
+      Sudah punya akun? <a href="login.html">Masuk</a>
+    </p>
+
+    <button type="submit" class="primary">Daftar</button>
+
+    <p class="divider">Atau</p>
+
+    <button type="button" class="google" onclick="loginGoogle()">
+      <img src="assets/google.png">
+      Daftar dengan Google
+    </button>
+
+  </form>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

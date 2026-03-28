@@ -1,0 +1,177 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+body {
+  background: #0c0f14;
+  color: white;
+}
+
+/* AUTH */
+.auth-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-bg {
+  background: url("../assets/bg-login.jpg") center/cover no-repeat;
+}
+
+.register-bg {
+  background: url("../assets/bg-register.jpg") center/cover no-repeat;
+}
+
+.auth-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.65);
+}
+
+.auth-card {
+  position: relative;
+  width: 420px;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(20,20,20,0.75);
+  backdrop-filter: blur(16px);
+  z-index: 2;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 120px;
+}
+
+.auth-title {
+  text-align: center;
+  font-size: 28px;
+}
+
+.auth-sub {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 999px;
+  border: 1px solid #444;
+  background: transparent;
+  color: white;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  cursor: pointer;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 999px;
+  border: none;
+  background: #5c5c5c;
+  cursor: pointer;
+}
+
+.divider {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.btn-google {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  width: 100%;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(10,10,10,0.9);
+}
+
+.nav-left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-left img {
+  height: 24px;
+}
+
+.nav-left a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.hero {
+  height: 90vh;
+  background: url("../assets/hero.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: flex-end;
+  padding: 80px 40px;
+}
+
+.section {
+  padding: 40px;
+}
+
+.card-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+}
+
+.card {
+  min-width: 160px;
+  height: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.footer {
+  padding: 40px;
+  background: #0a0a0a;
+}
