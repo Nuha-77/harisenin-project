@@ -1,34 +1,43 @@
-// ==========================
-// LOCAL STORAGE SYSTEM
-// ==========================
-
-// ambil user dari storage
+/* =========================================
+   1. LOCAL STORAGE SYSTEM (DATABASE MOCK)
+   ========================================= */
 function getUsers() {
   return JSON.parse(localStorage.getItem("users")) || [];
 }
 
-// simpan user
 function saveUsers(users) {
   localStorage.setItem("users", JSON.stringify(users));
 }
 
-// ==========================
-// TOGGLE PASSWORD
-// ==========================
-// toggle password
-document.querySelectorAll(".toggle-password").forEach(btn => {
-  btn.onclick = () => {
-    const input = btn.previousElementSibling;
-    const show = input.type === "password";
 
-    input.type = show ? "text" : "password";
-    btn.textContent = show ? "🙈" : "👁️";
-  };
+/* =========================================
+   2. TOGGLE PASSWORD VISIBILITY
+   ========================================= */
+document.querySelectorAll(".toggle-password").forEach(icon => {
+  icon.addEventListener("click", () => {
+    const input = icon.previousElementSibling;
+    if (!input) return;
+
+    const isPassword = input.type === "password";
+    
+    // Ubah tipe input
+    input.type = isPassword ? "text" : "password";
+    
+    // Ubah icon FontAwesome
+    if (isPassword) {
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+    } else {
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+    }
+  });
 });
 
-// ==========================
-// REGISTER
-// ==========================
+
+/* =========================================
+   3. REGISTER LOGIC
+   ========================================= */
 const registerBtn = document.getElementById("registerBtn");
 
 if (registerBtn) {
@@ -38,35 +47,36 @@ if (registerBtn) {
     const confirm = document.getElementById("regConfirm").value.trim();
 
     if (!user || !pass || !confirm) {
-      alert("Semua field wajib diisi");
+      alert("⚠️ Semua field wajib diisi!");
       return;
     }
 
     if (pass !== confirm) {
-      alert("Password tidak sama");
+      alert("❌ Konfirmasi kata sandi tidak cocok!");
       return;
     }
 
     let users = getUsers();
 
-    // cek user sudah ada
-    const exist = users.find(u => u.username === user);
+    const exist = users.find(u => u.username.toLowerCase() === user.toLowerCase());
     if (exist) {
-      alert("Username sudah terdaftar");
+      alert("❌ Username sudah terdaftar! Silakan gunakan username lain.");
       return;
     }
 
+    // Simpan user baru
     users.push({ username: user, password: pass });
     saveUsers(users);
 
-    alert("Registrasi berhasil");
+    alert("✅ Registrasi berhasil! Silakan login.");
     window.location.href = "login.html";
   });
 }
 
-// ==========================
-// LOGIN
-// ==========================
+
+/* =========================================
+   4. LOGIN LOGIC
+   ========================================= */
 const loginBtn = document.getElementById("loginBtn");
 
 if (loginBtn) {
@@ -75,46 +85,52 @@ if (loginBtn) {
     const pass = document.getElementById("loginPass").value.trim();
 
     if (!user || !pass) {
-      alert("Isi semua field");
+      alert("⚠️ Isi username dan kata sandi!");
       return;
     }
 
     const users = getUsers();
-
-    const validUser = users.find(
-      u => u.username === user && u.password === pass
-    );
+    const validUser = users.find(u => u.username === user && u.password === pass);
 
     if (!validUser) {
-      alert("Username atau password salah");
+      alert("❌ Username atau kata sandi salah!");
       return;
     }
 
-    // simpan session login
+    // Buat Sesi Login
     localStorage.setItem("isLogin", "true");
     localStorage.setItem("currentUser", user);
 
+    alert("✅ Login Berhasil!");
     window.location.href = "index.html";
   });
 }
 
-// ==========================
-// PROTECT INDEX (HARUS LOGIN)
-// ==========================
-if (window.location.pathname.includes("index.html")) {
-  const isLogin = localStorage.getItem("isLogin");
 
-  if (!isLogin) {
-    window.location.href = "login.html";
-  }
-}
-
-// ================= GOOGLE LOGIN FAKE =================
+/* =========================================
+   5. GOOGLE FAKE LOGIN
+   ========================================= */
 document.querySelectorAll('.btn-google').forEach(btn => {
   btn.addEventListener('click', () => {
-    alert('Terhubung dengan Akun Google Anda');
-    
-    // redirect ke beranda
+    alert('✅ Terhubung dengan Akun Google Anda!');
+    localStorage.setItem("isLogin", "true");
+    localStorage.setItem("currentUser", "GoogleUser");
     window.location.href = "index.html";
   });
 });
+
+
+/* =========================================
+   6. PROTECTED ROUTE (KEAMANAN HALAMAN UTAMA)
+   ========================================= */
+// Jika pengguna membuka halaman selain login/register, cek status loginnya
+const currentPage = window.location.pathname;
+const isAuthPage = currentPage.includes("login.html") || currentPage.includes("register.html");
+
+if (!isAuthPage && currentPage.includes(".html")) {
+  const isLogin = localStorage.getItem("isLogin");
+  if (!isLogin) {
+    alert("⚠️ Anda harus login terlebih dahulu!");
+    window.location.href = "login.html";
+  }
+}

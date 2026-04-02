@@ -1,3 +1,6 @@
+/* =========================================
+   1. ROOT & VARIABLES
+   ========================================= */
 :root {
   /* === BACKGROUND === */
   --bg-main: #020617;
@@ -17,9 +20,12 @@
   --blue: #2563eb;
 
   /* === BORDER / SHADOW === */
-  --border: rgba(255,255,255,0.08);
+  --border: rgba(255, 255, 255, 0.08);
 }
 
+/* =========================================
+   2. RESET & BASE
+   ========================================= */
 * {
   margin: 0;
   padding: 0;
@@ -28,25 +34,59 @@
 }
 
 body {
-  background: linear-gradient(
-    to bottom,
-    #0d0d0f 0%,
-    #0d0d0f 70%
-  );
+  background: linear-gradient(to bottom, #0d0d0f 0%, #0d0d0f 70%);
   color: var(--text-primary);
 }
-/* NAVBAR */
+
+h1, h2, h3 {
+  color: #e5e7eb;
+}
+
+p {
+  color: #9ca3af;
+}
+
+/* =========================================
+   3. LAYOUT & CONTAINERS
+   ========================================= */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section {
+  margin-top: 40px;
+  padding: 60px 60px 0;
+  background: transparent;
+}
+
+.section h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   4. NAVBAR
+   ========================================= */
 .navbar {
   background: rgba(18, 19, 22, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-
   border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
 }
 
 .logo {
@@ -59,9 +99,38 @@ body {
   gap: 30px;
 }
 
-nav a {
-  color: #ccc;
+.nav-menu {
+  display: flex;
+  gap: 20px;
+}
+
+nav a, .nav-menu a {
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 14px;
   cursor: pointer;
+}
+
+nav a:hover, .nav-menu a:hover {
+  color: #fff;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+/* User & Profile Menu */
+.user-menu, .profile {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 1001;
 }
 
 .avatar {
@@ -69,7 +138,67 @@ nav a {
   border-radius: 50%;
 }
 
-/* HERO */
+.arrow-down {
+  font-size: 10px;
+  color: #9ca3af;
+  transition: 0.2s;
+}
+
+.profile.active .arrow-down {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  width: 200px;
+  padding: 8px;
+  background: #18181b;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 999;
+}
+
+.profile.active .dropdown {
+  display: flex;
+}
+
+.dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #e5e7eb;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.dropdown a:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dropdown a i {
+  width: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.dropdown a:last-child, .dropdown a:last-child i {
+  color: #ef4444;
+}
+
+/* =========================================
+   5. HERO SECTION
+   ========================================= */
 .hero {
   height: 560px;
   background: url("../assets/hero.png") center/cover no-repeat;
@@ -88,28 +217,21 @@ nav a {
 }
 
 .hero-overlay {
-  background: linear-gradient(
-    to right,
-    rgba(19, 20, 26, 0.95),
-    rgba(19, 20, 26, 0.95),
-    transparent
-  );
+  background: linear-gradient(to right, rgba(19, 20, 26, 0.95), rgba(19, 20, 26, 0.95), transparent);
+  z-index: 1;
+  pointer-events: none;
 }
+
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-
-  background: linear-gradient(
-    to top,
-    #17181d,
-    transparent 40%
-  );
+  background: linear-gradient(to top, #17181d, transparent 40%);
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 500px;
 }
 
@@ -136,7 +258,7 @@ nav a {
 }
 
 .btn-secondary {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   padding: 10px 24px;
   border-radius: 20px;
@@ -149,91 +271,101 @@ nav a {
   border-radius: 50%;
 }
 
-.hero {
-  position: relative;
-}
-
-/* tombol mute */
+/* Hero Audio Button */
 .hero-audio {
   position: absolute;
   right: 24px;
   bottom: 24px;
-
   width: 42px;
   height: 42px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.3);
-
-  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(6px);
-
   cursor: pointer;
   transition: 0.3s;
+  z-index: 3;
 }
 
 .hero-audio:hover {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* icon */
+.hero-audio:active {
+  transform: scale(0.9);
+}
+
 .hero-audio i {
   color: white;
   font-size: 16px;
 }
 
-/* SECTION */
-.section {
-  padding: 40px;
-  background: transparent;
+/* =========================================
+   6. ROW & ARROW SLIDER
+   ========================================= */
+.row-wrapper {
+  position: relative;
 }
 
-.section h2 {
-  margin-bottom: 20px;
-}
-
-/* ROW */
 .row {
   display: flex;
   gap: 16px;
-
   overflow-x: auto;
-  overflow-y: hidden; /* ⛔ ini yang hilangin scroll bawah */
-
+  overflow-y: hidden;
   scroll-behavior: smooth;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;    /* Firefox */
 }
 
 .row::-webkit-scrollbar {
-  display: none;
+  display: none; /* Chrome, Safari and Opera */
 }
 
-.row {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s ease;
 }
 
-.row.horizontal .card {
-  min-width: 260px;
-  height: 150px;
+.row-wrapper:hover .arrow {
+  opacity: 1;
+  pointer-events: auto;
 }
 
+.arrow.left { left: -10px; }
+.arrow.right { right: -10px; }
+
+.arrow:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* =========================================
+   7. CARDS
+   ========================================= */
 .card {
+  min-width: 160px;
+  height: 240px;
   background: var(--bg-surface);
   border-radius: 12px;
   overflow: hidden;
+  position: relative;
   border: 1px solid var(--border);
-
   transition: all 0.3s ease;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  z-index: 2;
 }
 
 .card img {
@@ -243,91 +375,57 @@ nav a {
   display: block;
 }
 
-/* OVERLAY */
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+
+/* Portrait Specific */
+.card.portrait {
+  cursor: pointer;
+}
+
+.card.portrait:hover {
+  transform: scale(1.08);
+}
+
+/* Landscape Specific */
+.card.landscape, .row.horizontal .card {
+  min-width: 260px;
+  height: 150px;
+  flex-shrink: 0;
+}
+
+/* Overlays */
+/* GANTI DENGAN INI */
 .card-overlay {
   position: absolute;
   bottom: 0;
   width: 100%;
   padding: 10px;
-  background: linear-gradient(to top, rgba(2,6,23,0.95), transparent);
+  background: linear-gradient(to top, rgba(2, 6, 23, 0.95), transparent);
   display: flex;
   justify-content: space-between;
 }
 
-/* FOOTER */
-.footer {
-  margin-top: 60px;
-  padding: 40px 60px;
-  display: flex;
-  justify-content: space-between;
-  background: #0b0c10;
-}
-
-.footer-links {
-  display: flex;
-  gap: 60px;
-}
-
-/* ===== WRAPPER ===== */
-.row-wrapper {
-  position: relative;
-}
-
-/* ===== ROW ===== */
-.row {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-}
-
-/* ===== ARROW ===== */
-.arrow {
+.overlay {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-
-  border: none;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  cursor: pointer;
-  z-index: 5;
-}
-
-.arrow.left { left: 10px; }
-.arrow.right { right: 10px; }
-
-/* ===== CARD ===== */
-.card {
-  min-width: 160px;
-  height: 240px;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  transition: 0.3s;
-}
-
-.card img {
+  bottom: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  /* Tidak memakai display: flex agar progress bar tetap di bawah teks */
 }
 
-/* ===== HOVER ===== */
 .card-hover {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(2,6,23,0.95), transparent);
-  
+  background: linear-gradient(to top, rgba(2, 6, 23, 0.95), transparent);
   padding: 10px;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
   opacity: 0;
   transition: 0.3s;
 }
@@ -336,152 +434,37 @@ nav a {
   opacity: 1;
 }
 
-.card:hover {
-  transform: scale(1.1);
-  z-index: 3;
-}
-
-/* landscape card */
-.card.landscape {
-  min-width: 260px;
-  height: 150px;
-  flex-shrink: 0; /* ⛔ penting banget */
-}
-
-/* overlay bawah */
-.card-overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-
-  background: linear-gradient(to top, rgba(2,6,23,0.95), transparent);
-}
-
-/* progress bar */
-.progress-bar {
-  height: 4px;
-  background: rgba(255,255,255,0.2);
-  margin-top: 6px;
-  border-radius: 2px;
-}
-
-.progress {
-  height: 100%;
-  background: red;
-  border-radius: 2px;
-}
-
-/* ===== LANDSCAPE ===== */
-.card.landscape {
-  min-width: 260px;
-  height: 150px;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-}
-
-/* ===== IMAGE ===== */
-.card.landscape img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ===== OVERLAY ===== */
-.overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.9),
-    transparent
-  );
-}
-
-/* ===== INFO ===== */
+/* Card Info & Progress */
 .info {
   display: flex;
   justify-content: space-between;
   font-size: 13px;
 }
 
-/* ===== TITLE ===== */
 .title {
   font-weight: 500;
 }
 
-/* ===== RATING ===== */
 .rating {
   color: #ccc;
 }
 
-/* ===== PROGRESS ===== */
 .progress-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
   margin-top: 6px;
-  height: 3px;
-  background: rgba(255,255,255,0.2);
   border-radius: 2px;
 }
 
 .progress {
   height: 100%;
-  background: #e50914;
+  background: #e50914; /* Netflix Red */
   border-radius: 2px;
 }
 
-/* ===== CARD PORTRAIT ===== */
-.card.portrait {
-  min-width: 160px;
-  height: 240px;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-/* ===== IMAGE ===== */
-.card.portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ===== HOVER EFFECT ===== */
-.card.portrait:hover {
-  transform: scale(1.08);
-}
-
-/* ===== TRENDING CARD ===== */
-.card.portrait {
-  min-width: 160px;
-  height: 240px;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-/* ===== IMAGE ===== */
-.card.portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ===== HOVER EFFECT ===== */
-.card.portrait:hover {
-  transform: scale(1.08);
-}
-
-
-
-/* ===== BADGE FINAL CLEAN ===== */
+/* =========================================
+   8. BADGES
+   ========================================= */
 .badge {
   position: absolute;
   top: 10px;
@@ -495,110 +478,40 @@ nav a {
   white-space: nowrap;
 }
 
-/* 🔵 Episode Baru */
 .badge.blue {
   left: 10px;
-  background: #0c1b4b; /* lebih gelap */
+  background: #0c1b4b;
 }
 
 .badge.red {
   position: absolute;
   top: 0;
   right: 10px;
-
-  width: 24px;          /* 🔥 lebih ramping lagi */
-  height: 15%;         /* 🔥 FULL dari atas ke bawah */
-
+  width: 24px;
+  height: 15%;
   background: var(--red);
   color: #fff;
-
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* 🔥 teks di atas */
+  justify-content: flex-start;
   align-items: center;
-
-  padding-top: 8px;     /* 🔥 jarak dari atas */
-
+  padding-top: 8px;
   font-size: 9px;
   font-weight: 700;
   line-height: 1.1;
-
-  border-radius: 0;     /* 🔥 HAPUS bulat */
+  border-radius: 0;
 }
 
-.section {
-  margin-top: 40px;
-}
-
-.section h2 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.row-wrapper {
-  position: relative;
-}
-
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-
-  width: 36px;
-  height: 36px;
-
-  border-radius: 50%;
-  border: none;
-
-  background: rgba(0,0,0,0.6);
-  color: white;
-  cursor: pointer;
-}
-
-.arrow.left {
-  left: -10px;
-}
-
-.arrow.right {
-  right: -10px;
-}
-
-/* default: sembunyi */
-.arrow {
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.2s ease;
-}
-
-/* muncul saat hover wrapper */
-.row-wrapper:hover .arrow {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* posisi tetap */
-.arrow.left {
-  left: -10px;
-}
-
-.arrow.right {
-  right: -10px;
-}
-
-.arrow:hover {
-  background: rgba(0,0,0,0.9);
-  transform: translateY(-50%) scale(1.1);
-}
-
+/* =========================================
+   9. FOOTER
+   ========================================= */
 .footer {
   margin-top: 80px;
-  padding: 80px 60px;
+  display: flex;
+  justify-content: space-between;
   background: transparent;
-  border-top: 1px solid var(--border);
   padding: 40px 60px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .footer a {
@@ -611,12 +524,23 @@ nav a {
 
 .footer-container {
   display: grid;
-  grid-template-columns: 260px repeat(5, 1fr);
+  grid-template-columns: 260px 1fr 200px;
   gap: 60px;
   align-items: flex-start;
 }
 
-/* LEFT */
+.footer-container > .footer-col:nth-child(2) ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 20px;
+  row-gap: 2px; /* Jarak antar baris link */
+}
+
+.footer-links {
+  display: flex;
+  gap: 60px;
+}
+
 .footer-left {
   display: flex;
   flex-direction: column;
@@ -632,7 +556,11 @@ nav a {
   font-size: 14px;
 }
 
-/* COLUMN */
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
 .footer-col h4 {
   color: white;
   margin-bottom: 18px;
@@ -656,218 +584,104 @@ nav a {
   color: white;
 }
 
-.container {
+/* Footer Accordion */
+.footer-title {
   width: 100%;
-  max-width: 1280px;   /* ini penting */
-  margin: 0 auto;
-  padding: 0 40px;
-}
-
-.nav-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
-}
-
-.section {
-  padding: 60px 60px 0;
-}
-
-h1, h2, h3 {
+  background: none;
+  border: none;
   color: #e5e7eb;
-}
-
-p {
-  color: #9ca3af;
-}
-
-nav a {
-  color: #9ca3af;
-}
-
-nav a:hover {
-  color: #fff;
-}
-
-.user-menu {
-  position: relative;
-  cursor: pointer;
-}
-
-.profile {
-  position: relative;
-  cursor: pointer;
-}
-
-.dropdown {
-  position: absolute;
-  top: 48px;
-  right: 0;
-
-  width: 200px;
-  padding: 8px;
-
-  background: #18181b; /* 🔥 warna abu gelap (bukan biru) */
-  border-radius: 8px;
-
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  border: 1px solid rgba(255,255,255,0.05);
-
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-
-  z-index: 999;
-}
-
-/* aktif */
-.profile.active .dropdown {
-  display: flex;
-}
-
-/* item */
-.dropdown a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 10px 12px;
-  border-radius: 6px;
-
   font-size: 14px;
-  color: #e5e7eb;
-
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-/* hover */
-.dropdown a:hover {
-  background: rgba(255,255,255,0.05);
-}
-
-/* logout merah */
-.dropdown a:last-child {
-  color: #ef4444;
-}
-
-.dropdown a i {
-  width: 18px;
-  text-align: center;
-  font-size: 14px;
-  color: #9ca3af;
-}
-
-.dropdown a:last-child i {
-  color: #ef4444;
-}
-
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  position: relative;
-  z-index: 1001;
-}
-
-/* panah */
-.arrow-down {
-  font-size: 10px;
-  color: #9ca3af;
-  transition: 0.2s;
-}
-
-/* rotate saat aktif */
-.profile.active .arrow-down {
-  transform: rotate(180deg);
-}
-
-.container {
-  padding: 0 16px;
-}
-
-.nav-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* kiri */
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-menu a {
-  color: var(--text-primary);
-  text-decoration: none;
-  font-size: 14px;
-}
-
-/* kanan */
-.nav-right {
-  display: flex;
-  align-items: center;
-}
-
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  font-weight: 600;
   cursor: pointer;
+  padding: 10px 0;
 }
 
-.hero-overlay {
-  z-index: 1;
+.footer-title .arrow,
+.footer-title .footer-arrow,
+.footer-title i {
+  display: none !important; /* Paksa sembunyi di desktop */
+  transition: 0.3s;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
+.footer-accordion.active .arrow, 
+.footer-accordion.active .footer-arrow {
+  transform: rotate(90deg);
 }
 
-.hero-audio {
-  position: absolute;
-  right: 24px;
-  bottom: 24px;
-  z-index: 3; /* PALING ATAS */
+.footer-content {
+  max-height: none;
+  overflow: visible;
 }
 
-.hero-overlay {
-  pointer-events: none;
+.footer-content ul {
+  margin-top: 8px;
+  padding: 0;
 }
 
-.hero-audio:active {
-  transform: scale(0.9);
+.footer-content li {
+  margin-bottom: 10px;
 }
 
+.footer-arrow {
+  font-size: 14px;
+  transition: 0.3s;
+}
 
+/* =========================================
+   10. MEDIA QUERIES (Mobile & Tablet)
+   ========================================= */
+
+/* Desktop Settings for Footer Title */
+@media (min-width: 769px) {
+  .footer-title {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+/* Mobile Screens (max-width: 768px) */
 @media (max-width: 768px) {
-
-  /* CONTAINER */
+  /* Layout & Containers */
   .container {
     padding: 0 16px;
   }
+  
+  .section {
+    padding: 24px 16px;
+  }
 
-  /* NAVBAR */
+  .section h2 {
+    font-size: 16px;
+  }
+
+  /* Navbar */
+  .nav-inner {
+    height: 60px;
+  }
+
+  .nav-left {
+    gap: 14px;
+  }
+
   .nav-menu {
-    gap: 12px;
+    gap: 10px;
     font-size: 13px;
   }
 
+  .nav-menu a {
+    font-size: 13px;
+    color: #cbd5e1;
+  }
+
   .nav-menu a:nth-child(3) {
-    display: none;
+    display: inline; /*item menu ketiga di mobile */
   }
 
   .logo {
-    width: 70px;
+    width: 65px;
   }
 
   .avatar {
@@ -875,7 +689,11 @@ nav a:hover {
     height: 28px;
   }
 
-  /* HERO */
+  .nav-right {
+    margin-left: auto;
+  }
+
+  /* Hero Section */
   .hero {
     height: 480px;
     padding: 0 16px;
@@ -894,14 +712,11 @@ nav a:hover {
     gap: 8px;
   }
 
-  /* BUTTON */
-  .btn-primary,
-  .btn-secondary {
+  .btn-primary, .btn-secondary {
     padding: 8px 16px;
     font-size: 13px;
   }
 
-  /* AUDIO BUTTON */
   .hero-audio {
     width: 36px;
     height: 36px;
@@ -909,21 +724,11 @@ nav a:hover {
     bottom: 16px;
   }
 
-  /* SECTION */
-  .section {
-    padding: 24px 16px;
-  }
-
-  .section h2 {
-    font-size: 16px;
-  }
-
-  /* ROW */
+  /* Cards & Slider */
   .row {
     gap: 12px;
   }
 
-  /* CARD */
   .card {
     min-width: 140px;
     height: 210px;
@@ -934,65 +739,19 @@ nav a:hover {
     height: 130px;
   }
 
-  /* ARROW HIDE */
   .arrow {
     display: none;
   }
 
-  /* FOOTER */
-  .footer-container {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .footer-col {
-    border-top: 1px solid rgba(255,255,255,0.05);
-    padding-top: 12px;
-  }
-
-}
-
-@media (max-width: 768px) {
-
-  .nav-inner {
-    height: 60px;
-  }
-
-  .nav-left {
-    gap: 14px; /* lebih rapat tapi tetap rapi */
-  }
-
-  .nav-menu {
-    gap: 10px;
-  }
-
-  .nav-menu a {
-    font-size: 13px;
-    color: #cbd5e1;
-  }
-
-  .logo {
-    width: 65px;
-  }
-
-  .avatar {
-    width: 28px;
-    height: 28px;
-  }
-
-  /* kasih jarak kanan */
-  .nav-right {
-    margin-left: auto;
-  }
-
-}
-
-@media (max-width: 768px) {
-
+  /* Footer */
   .footer-container {
     display: flex;
     flex-direction: column;
     gap: 24px;
+  }
+
+  .footer-container > .footer-col:nth-child(2) ul {
+    display: block; 
   }
 
   .footer-left {
@@ -1008,7 +767,8 @@ nav a:hover {
   }
 
   .footer-col {
-    border-top: 1px solid rgba(255,255,255,0.06);
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding-top: 14px;
   }
 
@@ -1017,138 +777,19 @@ nav a:hover {
     margin-bottom: 10px;
   }
 
+  .footer-col ul {
+    margin-top: 8px;
+  }
+
   .footer-col ul li {
     font-size: 13px;
     margin-bottom: 8px;
   }
 
-}
-
-/* ACCORDION BASE */
-.footer-title {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  background: none;
-  border: none;
-  color: #e5e7eb;
-  font-size: 14px;
-  font-weight: 600;
-
-  cursor: pointer;
-  padding: 10px 0;
-}
-
-.footer-title .arrow {
-  transition: 0.3s;
-}
-
-/* rotate arrow */
-.footer-accordion.active .arrow {
-  transform: rotate(90deg);
-}
-
-/* hidden by default */
-.footer-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-/* open */
-.footer-accordion.active .footer-content {
-  max-height: 300px;
-}
-
-/* MOBILE ONLY */
-@media (max-width: 768px) {
-  .footer-col ul {
-    margin-top: 8px;
-  }
-}
-
-/* DESKTOP DEFAULT */
-.footer-content {
-  max-height: none;
-  overflow: visible;
-}
-
-@media (max-width: 768px) {
-
-  .footer-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: 0.3s ease;
-  }
-
-  .footer-accordion.active .footer-content {
-    max-height: 300px;
-  }
-
-}
-
-/* default: hilang */
-.footer-title .arrow {
-  display: none;
-}
-
-/* mobile: muncul */
-@media (max-width: 768px) {
-  .footer-title .arrow {
-    display: inline;
-  }
-}
-
-@media (min-width: 769px) {
-  .footer-title {
-    pointer-events: none;
-    cursor: default;
-  }
-}
-
-.footer-content ul {
-  margin-top: 8px;
-  padding: 0;
-}
-
-.footer-content li {
-  margin-bottom: 10px;
-}
-
-@media (max-width: 768px) {
-
-  .footer-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .footer-col {
-    width: 100%;
-  }
-
-}
-
-.footer-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-arrow {
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.footer-accordion.active .footer-arrow {
-  transform: rotate(90deg);
-}
-
-@media (max-width: 768px) {
-
-  .footer-container {
-    display: flex;
-    flex-direction: column;
+  .footer-title .arrow,
+  .footer-title .footer-arrow,
+  .footer-title i {
+  display: inline !important; /* Paksa muncul di mobile */
   }
 
   .footer-content {
@@ -1158,8 +799,6 @@ nav a:hover {
   }
 
   .footer-accordion.active .footer-content {
-    max-height: 500px;
+    max-height: 500px; /* Diubah jadi 500px untuk mengakomodasi list yang panjang */
   }
-
 }
-

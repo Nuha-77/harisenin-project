@@ -2,62 +2,53 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Register</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Chill</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="auth-page register-bg">
 
-<div class="auth-overlay"></div>
+  <div class="auth-overlay"></div>
 
-<div class="auth-card">
+  <div class="auth-card">
+    <img src="assets/Logo.png" alt="Chill Logo" class="logo-img">
 
-  <!-- logo -->
-  <img src="assets/Logo.png" class="logo-img">
+    <h2 class="auth-title">Daftar</h2>
+    <p class="auth-sub">Selamat datang!</p>
 
-  <h2 class="auth-title">Daftar</h2>
-  <p class="auth-sub">Selamat datang!</p>
+    <label>Username</label>
+    <div class="form-group">
+      <input id="regUser" type="text" placeholder="Masukkan username">
+    </div>
 
-  <!-- USERNAME -->
-  <label>Username</label>
-  <div class="form-group">
-    <input id="regUser" type="text" placeholder="Masukkan username">
+    <label>Kata Sandi</label>
+    <div class="form-group">
+      <input id="regPass" type="password" placeholder="Masukkan kata sandi">
+      <i class="fa-regular fa-eye-slash toggle-password"></i>
+    </div>
+
+    <label>Konfirmasi Kata Sandi</label>
+    <div class="form-group">
+      <input id="regConfirm" type="password" placeholder="Masukkan kata sandi">
+      <i class="fa-regular fa-eye-slash toggle-password"></i>
+    </div>
+
+    <div class="form-row">
+      <span>Sudah punya akun? <a href="login.html">Masuk</a></span>
+    </div>
+
+    <button id="registerBtn" class="btn btn-login">Daftar</button>
+
+    <div class="divider">Atau</div>
+
+    <button class="btn-google">
+      <img src="assets/google.png" alt="Google Icon">
+      <span>Daftar dengan Google</span>
+    </button>
   </div>
 
-  <!-- PASSWORD -->
-  <label>Kata Sandi</label>
-  <div class="form-group">
-    <input id="regPass" type="password" placeholder="Masukkan kata sandi">
-    <span class="toggle-password">👁️</span>
-  </div>
-
-  <!-- CONFIRM -->
-  <label>Konfirmasi Kata Sandi</label>
-  <div class="form-group">
-    <input id="regConfirm" type="password" placeholder="Masukkan kata sandi">
-    <span class="toggle-password">👁️</span>
-  </div>
-
-  <!-- LINK -->
-  <div class="form-row">
-    <span>Sudah punya akun? <a href="login.html">Masuk</a></span>
-  </div>
-
-  <!-- BUTTON -->
-  <button id="registerBtn" class="btn btn-login">Daftar</button>
-
-  <div class="divider">Atau</div>
-
-  <!-- GOOGLE -->
-  <div class="btn-google">
-    <img src="assets/google.png">
-    <span>Daftar dengan Google</span>
-  </div>
-
-</div>
-
-<script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

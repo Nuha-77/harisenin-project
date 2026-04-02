@@ -2,51 +2,48 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Chill</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="auth-page login-bg">
 
-<div class="auth-overlay"></div>
+  <div class="auth-overlay"></div>
 
-<div class="auth-card">
+  <div class="auth-card">
+    <img src="assets/Logo.png" alt="Chill Logo" class="logo-img">
 
-  <!-- logo pakai asset -->
-  <img src="assets/Logo.png" class="logo-img">
+    <h2 class="auth-title">Masuk</h2>
+    <p class="auth-sub">Selamat datang kembali!</p>
 
-  <h2 class="auth-title">Masuk</h2>
-  <p class="auth-sub">Selamat datang kembali!</p>
+    <label>Username</label>
+    <div class="form-group">
+      <input id="loginUser" type="text" placeholder="Masukkan username">
+    </div>
 
-  <label>Username</label>
-  <div class="form-group">
-    <input id="loginUser" type="text" placeholder="Masukkan username">
+    <label>Kata Sandi</label>
+    <div class="form-group">
+      <input id="loginPass" type="password" placeholder="Masukkan kata sandi">
+      <i class="fa-regular fa-eye-slash toggle-password"></i>
+    </div>
+
+    <div class="form-row">
+      <span>Belum punya akun? <a href="register.html">Daftar</a></span>
+      <a href="#">Lupa kata sandi?</a>
+    </div>
+
+    <button id="loginBtn" class="btn btn-login">Masuk</button>
+
+    <div class="divider">Atau</div>
+
+    <button class="btn-google">
+      <img src="assets/google.png" alt="Google Icon">
+      <span>Masuk dengan Google</span>
+    </button>
   </div>
 
-  <label>Kata Sandi</label>
-  <div class="form-group">
-    <input id="loginPass" type="password" placeholder="Masukkan kata sandi">
-    <span class="toggle-password">👁️</span>
-  </div>
-
-  <div class="form-row">
-    <span>Belum punya akun? <a href="register.html">Daftar</a></span>
-    <a href="#">Lupa kata sandi?</a>
-  </div>
-
-  <button id="loginBtn" class="btn btn-login">Masuk</button>
-
-  <div class="divider">Atau</div>
-
-  <div class="btn-google">
-    <img src="assets/google.png">
-    <span>Masuk dengan Google</span>
-  </div>
-
-</div>
-
-<script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

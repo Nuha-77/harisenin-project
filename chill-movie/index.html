@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chill</title>
   <link rel="stylesheet" href="css/home.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -9,183 +10,156 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
-  <div class="container nav-inner">
+  <header class="navbar">
+    <div class="container nav-inner">
 
-    <!-- LEFT -->
-    <div class="nav-left">
-      <img src="assets/logo.png" class="logo" />
+      <div class="nav-left">
+        <img src="assets/logo.png" class="logo" alt="Chill Logo" />
+        <nav class="nav-menu">
+          <a href="#">Series</a>
+          <a href="#">Film</a>
+          <a href="#">Daftar Saya</a>
+        </nav>
+      </div>
 
-      <nav class="nav-menu">
-        <a href="#">Series</a>
-        <a href="#">Film</a>
-        <a href="#">Daftar Saya</a>
-      </nav>
-    </div>
+      <div class="nav-right">
+        <div class="profile">
+          <img src="assets/avatar.png" class="avatar" alt="Avatar User" />
+          <span class="arrow-down">&#9662;</span>
 
-    <!-- RIGHT -->
-    <div class="nav-right">
-      <div class="profile">
-        <img src="assets/avatar.png" class="avatar" />
-
-        <span class="arrow-down">&#9662;</span>
-
-        <div class="dropdown">
-          <a href="#">
-            <i class="fa-solid fa-user"></i>
-            Profil Saya
-          </a>
-
-          <a href="#">
-            <i class="fa-solid fa-star"></i>
-            Ubah Premium
-          </a>
-
-          <a href="#" id="logoutBtn">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            Keluar
-          </a>
+          <div class="dropdown">
+            <a href="#">
+              <i class="fa-solid fa-user"></i>
+              Profil Saya
+            </a>
+            <a href="#">
+              <i class="fa-solid fa-star"></i>
+              Ubah Premium
+            </a>
+            <a href="#" id="logoutBtn">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              Keluar
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-  </div>
-</header>
+    </div>
+  </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-overlay"></div>
-  <div class="container">
-  <div class="hero-content">
-    <h1>Duty After School</h1>
-    <p>
-      Sebuah benda tak dikenal mengambil alih dunia. Dalam keputusasaan, 
-      Departemen Pertahanan mulai merekrut lebih banyak tentara, termasuk siswa 
-      sekolah menengah. Mereka pun segera menjadi pejuang garis depan dalam perang.
-    </p>
-
-    <div class="hero-actions">
-      <button class="btn-primary">Mulai</button>
-      <button class="btn-secondary">Selengkapnya</button>
-      <span class="age">18+</span>
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Duty After School</h1>
+        <p>
+          Sebuah benda tak dikenal mengambil alih dunia. Dalam keputusasaan, 
+          Departemen Pertahanan mulai merekrut lebih banyak tentara, termasuk siswa 
+          sekolah menengah. Mereka pun segera menjadi pejuang garis depan dalam perang.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary">Mulai</button>
+          <button class="btn-secondary">Selengkapnya</button>
+          <span class="age">18+</span>
+        </div>
+      </div>
+      <button class="hero-audio">
+        <i class="fa-solid fa-volume-xmark" id="muteBtn"></i>
+      </button>
     </div>
-    </div>
-  <div class="hero-audio">
-    <i class="fa-solid fa-volume-xmark" id="muteBtn"></i>
-    </div>
-  </div>
   </section>
 
-<!-- SECTION -->
-<section class="section">
-  <div class="container">
-    <h2>Melanjutkan Tonton Film</h2>
-
-    <div class="row-wrapper">
-      <button class="arrow left">&#10094;</button>
-
-      <div class="row" id="continueWatching"></div>
-
-      <button class="arrow right">&#10095;</button>
+  <section class="section">
+    <div class="container">
+      <h2>Melanjutkan Tonton Film</h2>
+      <div class="row-wrapper">
+        <button class="arrow left">&#10094;</button>
+        <div class="row" id="continueWatching"></div>
+        <button class="arrow right">&#10095;</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container">
-    <h2>Top Rating Film dan Series Hari ini</h2>
-
-    <div class="row-wrapper">
-      <button class="arrow left" onclick="scrollRow('topRating', -1)">&#10094;</button>
-
-      <div class="row" id="topRating"></div>
-
-      <button class="arrow right" onclick="scrollRow('topRating', 1)">&#10095;</button>
+  <section class="section">
+    <div class="container">
+      <h2>Top Rating Film dan Series Hari ini</h2>
+      <div class="row-wrapper">
+        <button class="arrow left">&#10094;</button>
+        <div class="row" id="topRating"></div>
+        <button class="arrow right">&#10095;</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container">
-    <h2>Film Trending</h2>
-
-    <div class="row-wrapper">
-      <button class="arrow left" onclick="scrollRow('trending', -1)">&#10094;</button>
-
-      <div class="row" id="trending"></div>
-
-      <button class="arrow right" onclick="scrollRow('trending', 1)">&#10095;</button>
+  <section class="section">
+    <div class="container">
+      <h2>Film Trending</h2>
+      <div class="row-wrapper">
+        <button class="arrow left">&#10094;</button>
+        <div class="row" id="trending"></div>
+        <button class="arrow right">&#10095;</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container">
-    <h2>Rilis Baru</h2>
-
-    <div class="row-wrapper">
-      <button class="arrow left">&#10094;</button>
-
-      <div class="row" id="rilisBaru"></div>
-
-      <button class="arrow right">&#10095;</button>
+  <section class="section">
+    <div class="container">
+      <h2>Rilis Baru</h2>
+      <div class="row-wrapper">
+        <button class="arrow left">&#10094;</button>
+        <div class="row" id="rilisBaru"></div>
+        <button class="arrow right">&#10095;</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-container">
+  <footer class="footer">
+    <div class="footer-container">
 
-    <!-- LEFT -->
-    <div class="footer-left">
-      <img src="assets/logo.png" class="footer-logo" />
-      <p>@2023 Chill All Rights Reserved.</p>
+      <div class="footer-left">
+        <img src="assets/logo.png" class="footer-logo" alt="Chill Logo" />
+        <p>@2023 Chill All Rights Reserved.</p>
+      </div>
+
+      <div class="footer-col footer-accordion">
+        <button class="footer-title">
+          Genre
+          <span class="footer-arrow">›</span>
+        </button>
+        <ul class="footer-content">
+          <li>Aksi</li>
+          <li>Anak-anak</li>
+          <li>Anime</li>
+          <li>Britania</li>
+          <li>Drama</li>
+          <li>Fantasi Ilmiah & Fantasi</li>
+          <li>Kejahatan</li>
+          <li>KDrama</li>
+          <li>Komedi</li>
+          <li>Petualangan</li>
+          <li>Perang</li>
+          <li>Romantis</li>
+          <li>Sains & Alam</li>
+          <li>Thriller</li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-accordion">
+        <button class="footer-title">
+          Bantuan
+          <span class="footer-arrow">›</span>
+        </button>
+        <ul class="footer-content">
+          <li>FAQ</li>
+          <li>Kontak Kami</li>
+          <li>Privasi</li>
+          <li>Syarat & Ketentuan</li>
+        </ul>
+      </div>
+
     </div>
+  </footer>
 
-    <!-- GENRE -->
-<div class="footer-col footer-accordion">
-  <button class="footer-title">
-    Genre
-    <span class="footer-arrow">›</span>
-  </button>
-
-  <ul class="footer-content">
-    <li>Aksi</li>
-    <li>Anak-anak</li>
-    <li>Anime</li>
-    <li>Britania</li>
-    <li>Drama</li>
-    <li>Fantasi Ilmiah & Fantasi</li>
-    <li>Kejahatan</li>
-    <li>KDrama</li>
-    <li>Komedi</li>
-    <li>Petualangan</li>
-    <li>Perang</li>
-    <li>Romantis</li>
-    <li>Sains & Alam</li>
-    <li>Thriller</li>
-  </ul>
-</div>
-
-    <!-- BANTUAN -->
-    <div class="footer-col footer-accordion">
-      <button class="footer-title">
-        Bantuan
-        <span class="footer-arrow">›</span>
-      </button>
-      <ul class="footer-content">
-        <li>FAQ</li>
-        <li>Kontak Kami</li>
-        <li>Privasi</li>
-        <li>Syarat & Ketentuan</li>
-      </ul>
-    </div>
-
-  </div>
-</footer>
-
-<script src="js/home.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>
