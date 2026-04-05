@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planify</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <div class="header">
+    <h1>Planify</h1>
+    <p class="tagline">Plan your day, stay productive</p>
+  </div>
+
+  <!-- PROFILE (INLINE EDIT) -->
+  <div class="profile-box">
+    <input id="nameInput" class="profile-input" placeholder="Masukkan nama..."/>
+    <input id="roleInput" class="role-input" placeholder="Masukkan role..."/>
+    <p id="time"></p>
+  </div>
+
+  <!-- INPUT -->
+  <div class="input-group">
+    <input type="text" id="taskInput" placeholder="Tulis tugas...">
+
+    <select id="priority">
+      <option value="low">Low Priority</option>
+      <option value="medium">Medium Priority</option>
+      <option value="high">High Priority</option>
+    </select>
+
+    <button onclick="addTask()">Tambah Tugas</button>
+  </div>
+
+  <!-- TODO -->
+  <div class="section">
+    <h3>To Do</h3>
+    <ul id="todoList"></ul>
+    <p id="emptyTodo" class="empty">Belum ada tugas</p>
+  </div>
+
+  <!-- DONE -->
+  <div class="section">
+    <h3>Done</h3>
+    <ul id="doneList"></ul>
+    <p id="emptyDone" class="empty">Belum ada tugas selesai</p>
+  </div>
+
+  <button class="delete-all" onclick="deleteAll()">Hapus Semua</button>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
